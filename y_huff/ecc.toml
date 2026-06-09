@@ -1,0 +1,20 @@
+[design]
+name = "y_huff"
+top = "y_huff"
+rtl = ["src/y_huff.v"]
+clock_port = "clk"
+frequency_mhz = 88.1057268722
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+run = "default"
+
+[params.floorplan]
+core_util = 0.25
+
+[params.synth]
+max_fanout = 6

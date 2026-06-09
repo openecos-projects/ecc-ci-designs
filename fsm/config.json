@@ -1,7 +1,0 @@
-{
-    "DESIGN_NAME": "fsm",
-    "VERILOG_FILES": "dir::fsm.v",
-    "CLOCK_PORT": "clk",
-    "FP_CORE_UTIL": 30,
-    "USE_SYNLIG": true
-}

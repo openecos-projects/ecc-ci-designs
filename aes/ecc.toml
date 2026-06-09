@@ -1,0 +1,23 @@
+[design]
+name = "aes"
+top = "aes"
+rtl = ["src/aes.v"]
+clock_port = "clk"
+frequency_mhz = 40.0
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+run = "default"
+
+[params.floorplan]
+core_util = 0.15
+
+[params.synth]
+max_fanout = 8
+
+[params.place]
+target_density = 0.25

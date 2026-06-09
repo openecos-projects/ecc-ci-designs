@@ -1,3 +1,23 @@
+# ECC CI Usage
+
+This repository is trimmed to the ECC CI sample set: `aes`, `APU`, `BM64`,
+`picorv32a`, `usb`, `xtea`, `y_huff`, and `zipdiv`.
+
+Each selected design is a standalone ECC project with an `ecc.toml` in its
+design directory. Paths in `ecc.toml` are relative to that directory.
+
+Run a design with:
+
+```bash
+ecc check --project openlane2-ci-designs/aes
+ecc run --project openlane2-ci-designs/aes --overwrite
+```
+
+The CI environment must provide the ICS55 PDK root through
+`CHIPCOMPILER_ICS55_PDK_ROOT` or `ICS55_PDK_ROOT`.
+
+---
+
 # OpenLane CI Designs
 
 These are designs used in the testing of OpenLane 2 or higher.

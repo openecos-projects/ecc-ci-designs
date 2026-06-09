@@ -1,0 +1,20 @@
+[design]
+name = "usb"
+top = "usb"
+rtl = ["src/usb2p0_core.v"]
+clock_port = "clk_48"
+frequency_mhz = 66.6666666667
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+run = "default"
+
+[params.floorplan]
+core_util = 0.40
+
+[params.synth]
+max_fanout = 6

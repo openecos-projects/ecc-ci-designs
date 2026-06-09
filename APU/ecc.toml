@@ -1,0 +1,20 @@
+[design]
+name = "APU"
+top = "APU"
+rtl = ["src/APU.v"]
+clock_port = "clk"
+frequency_mhz = 58.8235294118
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+run = "default"
+
+[params.floorplan]
+core_util = 0.35
+
+[params.synth]
+max_fanout = 6

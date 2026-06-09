@@ -1,0 +1,7 @@
+{
+  "repo": "https://github.com/efabless/openlane2-ci-designs",
+  "commit": "f6ab2290778d9fd15b7e6859929e365e99f2a8b0",
+  "path": "zipdiv",
+  "source_config": "config.json",
+  "ecc_config": "ecc.toml"
+}

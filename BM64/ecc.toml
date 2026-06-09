@@ -1,0 +1,20 @@
+[design]
+name = "BM64"
+top = "BM64"
+rtl = ["src/BM64.v"]
+clock_port = "Clk"
+frequency_mhz = 50.0
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+run = "default"
+
+[params.floorplan]
+core_util = 0.18
+
+[params.synth]
+max_fanout = 6
