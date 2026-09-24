@@ -36,6 +36,14 @@ numbers — see `xtea/` for the reference layout (`checks/*.check` +
 `xtea.lit`). Adding a design is adding one self-contained directory; nothing
 changes in the ecc repo.
 
+The baseline gates every design carries (`<name>.lit`):
+
+- `home/flow.json`: every step is `Success`
+- `home/checklist.json`: at least one `quality_gate` item exists and all of
+  them are `state=pass` and unblocked — this is what enforces DRC/LVS clean
+  and STA setup/hold closure (`quality.drc.clean`, `quality.lvs.clean`,
+  `quality.sta.setup_closed`, `quality.sta.hold_closed`)
+
 ---
 
 # OpenLane CI Designs

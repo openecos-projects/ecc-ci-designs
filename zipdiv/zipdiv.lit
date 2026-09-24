@@ -1,0 +1,3 @@
+; REQUIRES: flow-zipdiv
+; RUN: %jq -e "[.steps[].state] | all(. == \"Success\")" %flows/zipdiv/default/home/flow.json
+; RUN: %jq -e "[.checklist[] | select(.category == \"quality_gate\")] | length > 0 and all(.state == \"pass\" and (.blocked | not))" %flows/zipdiv/default/home/checklist.json
