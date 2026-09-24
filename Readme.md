@@ -21,13 +21,13 @@ The CI environment must provide the ICS55 PDK root through
 This repository also hosts the `ecc-flow-e2e` lit suite (`lit.cfg.py` at the
 root). Each `<name>/<name>.lit` file checks the workspace produced by running
 the design through an `ecc` binary (typically the PyInstaller bundle) with
-ecc's `nix/scripts/run_designs.sh`:
+ecc's `nix/scripts/run-designs.sh`:
 
 ```bash
 # in an ecc checkout
-bash nix/scripts/run_designs.sh --ecc <ecc-binary> --designs-dir <this-repo> \
+bash nix/scripts/run-designs.sh --ecc <ecc-binary> --designs-dir <this-repo> \
     --out-root /tmp/e2e
-ECC_FLOW_WORKSPACES=/tmp/e2e bash nix/scripts/signoff_lit.sh <this-repo>
+ECC_FLOW_WORKSPACES=/tmp/e2e bash nix/scripts/signoff-lit.sh <this-repo>
 ```
 
 A `<name>.lit` case starts with `; REQUIRES: flow-<name>` and uses `%flows`
