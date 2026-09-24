@@ -1,0 +1,5 @@
+CHECK: "tool": "yosys"
+CHECK: "step": "Synthesis"
+CHECK: "design": "xtea"
+CHECK: "analysis_status": "valid"
+CHECK: "quality_status": "pass"

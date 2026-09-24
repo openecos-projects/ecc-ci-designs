@@ -11,10 +11,9 @@ root = ""
 
 [flow]
 preset = "rtl2gds"
-run = "default"
 
 [params.floorplan]
 core_util = 0.25
 
-[params.synth]
+[params.cts]
 max_fanout = 6

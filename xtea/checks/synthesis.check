@@ -1,0 +1,3 @@
+CHECK: Checking module xtea
+CHECK: Found and reported 0 problems.
+CHECK-NOT: ERROR
