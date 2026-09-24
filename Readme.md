@@ -16,6 +16,26 @@ ecc run --project openlane2-ci-designs/aes --overwrite
 The CI environment must provide the ICS55 PDK root through
 `CHIPCOMPILER_ICS55_PDK_ROOT` or `ICS55_PDK_ROOT`.
 
+## Flow e2e checks (lit)
+
+This repository also hosts the `ecc-flow-e2e` lit suite (`lit.cfg.py` at the
+root). Each `<name>/<name>.lit` file checks the workspace produced by running
+the design through an `ecc` binary (typically the PyInstaller bundle) with
+ecc's `nix/scripts/run_designs.sh`:
+
+```bash
+# in an ecc checkout
+bash nix/scripts/run_designs.sh --ecc <ecc-binary> --designs-dir <this-repo> \
+    --out-root /tmp/e2e
+ECC_FLOW_WORKSPACES=/tmp/e2e bash nix/scripts/signoff_lit.sh <this-repo>
+```
+
+A `<name>.lit` case starts with `; REQUIRES: flow-<name>` and uses `%flows`
+(the run output root), `%filecheck` and `%jq`. Pin report structure, not
+numbers — see `xtea/` for the reference layout (`checks/*.check` +
+`xtea.lit`). Adding a design is adding one self-contained directory; nothing
+changes in the ecc repo.
+
 ---
 
 # OpenLane CI Designs
