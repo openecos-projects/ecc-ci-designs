@@ -1,0 +1,19 @@
+[design]
+name = "gcd_icg"
+top = "gcd"
+rtl = ["src/gcd_icg.v", "src/physical_only_cells.v"]
+netlist = "src/gcd_icg.v"
+def = "inputs/gcd_icg.def"
+sdc = "constraints/gcd_icg.sdc"
+spef = "inputs/gcd_icg.spef"
+clock_port = "clk"
+frequency_mhz = 100.0
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+# This is an already mapped gate-level fixture.  Run synthesis plus its
+# netlist-level timing report, rather than rebuilding the supplied layout.
+preset = "syn_sta"
