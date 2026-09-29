@@ -1,10 +1,15 @@
 # ECC CI Usage
 
 This repository is trimmed to the ECC CI sample set: `aes`, `APU`, `BM64`,
-`picorv32a`, `usb`, `xtea`, `y_huff`, and `zipdiv`.
+`gcd_icg`, `picorv32a`, `usb`, `xtea`, `y_huff`, and `zipdiv`.
 
 Each selected design is a standalone ECC project with an `ecc.toml` in its
 design directory. Paths in `ecc.toml` are relative to that directory.
+
+`gcd_icg` is intentionally a gate-level `syn_sta` fixture. It keeps its
+original DEF/SPEF timing inputs and checks that its integrated clock-gate
+cells survive synthesis input handling; unlike the RTL-to-GDS fixtures, it
+does not claim physical-signoff quality gates.
 
 Run a design with:
 
