@@ -1,0 +1,13 @@
+IFU.sv
+IDU.sv
+EXU.sv
+LSU.sv
+WBU.sv
+Queue1_IF2ID.sv
+tag_4x26.sv
+data_4x32.sv
+Cache.sv
+AXI4CrossbarNto1.sv
+AXI4Crossbar1toN.sv
+AXI4CLINT.sv
+NPC.sv

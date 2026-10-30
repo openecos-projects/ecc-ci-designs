@@ -1,0 +1,19 @@
+[design]
+name = "Bstage-rv32e-64B-icache"
+top = "NPC"
+rtl = ["src/filelist.f"]
+clock_port = "clock"
+frequency_mhz = 50.0
+
+[pdk]
+name = "ics55"
+root = ""
+
+[flow]
+preset = "rtl2gds"
+
+[params.floorplan]
+core_util = 0.35
+
+[params.cts]
+max_fanout = 6

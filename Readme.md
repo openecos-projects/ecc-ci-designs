@@ -1,10 +1,19 @@
 # ECC CI Usage
 
-This repository is trimmed to the ECC CI sample set: `aes`, `APU`, `BM64`,
-`gcd_icg`, `picorv32a`, `usb`, `xtea`, `y_huff`, and `zipdiv`.
+This repository contains 14 ECC CI designs: `aes`, `APU`, `BM64`,
+`Bstage-rv32e-64B-icache`, `Cstage-rv32e-axi`, `Dstage-rv32e`,
+`Estage-minirv`, `Fstage-scpu`, `gcd_icg`, `picorv32a`, `usb`, `xtea`,
+`y_huff`, and `zipdiv`.
 
 Each selected design is a standalone ECC project with an `ecc.toml` in its
 design directory. Paths in `ecc.toml` are relative to that directory.
+
+The five ysyx cores (`Bstage` through `Fstage`) use the `NPC` top module,
+the `clock` port, and the ICS55 `rtl2gds` flow with a 50 MHz target and
+35% core utilization. Each core runs as a separate project with its
+SystemVerilog sources under `src/`; the multi-file cores list them through
+`src/filelist.f`, while the single-file `Fstage-scpu` core names its source
+directly in `ecc.toml`.
 
 `gcd_icg` is intentionally a gate-level `syn_sta` fixture. It keeps its
 original DEF/SPEF timing inputs and checks that its integrated clock-gate
@@ -14,8 +23,8 @@ does not claim physical-signoff quality gates.
 Run a design with:
 
 ```bash
-ecc check --project openlane2-ci-designs/aes
-ecc run --project openlane2-ci-designs/aes --overwrite
+ecc check --project ecc-ci-designs/aes
+ecc run --project ecc-ci-designs/aes --overwrite
 ```
 
 The CI environment must provide the ICS55 PDK root through
