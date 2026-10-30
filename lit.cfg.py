@@ -18,7 +18,8 @@ config.name = "ecc-flow-e2e"
 config.test_format = lit.formats.ShTest(execute_external=True)
 config.suffixes = [".lit"]
 config.test_source_root = str(_ROOT)
-config.test_exec_root = str(_ROOT / ".lit-out")
+# Use ECC_LIT_EXEC_ROOT to keep generated files out of a read-only suite.
+config.test_exec_root = os.environ.get("ECC_LIT_EXEC_ROOT") or str(_ROOT / ".lit-out")
 
 flows = os.environ.get("ECC_FLOW_WORKSPACES") or ""
 
