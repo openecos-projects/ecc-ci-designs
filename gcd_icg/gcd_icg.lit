@@ -1,4 +1,5 @@
 ; REQUIRES: flow-gcd_icg
-; RUN: %jq -e '[.steps[] | {name, state}] == [{"name":"Synthesis","state":"Success"}]' %flows/gcd_icg/default/home/flow.json
+; RUN: %jq -e '.steps[-1].name == "Harden" and ([.steps[].state] | all(. == "Success"))' %flows/gcd_icg/default/home/flow.json
+; RUN: %jq -e '[.checklist[] | select(.category == "quality_gate")] as $g | if ($g | length) == 0 then error("no quality_gate items") else ([$g[] | select(.state != "pass" or .blocked) | {id, state, blocked}] as $bad | if ($bad | length) == 0 then true else error($bad | @json) end) end' %flows/gcd_icg/default/home/checklist.json
 ; RUN: %jq -e '.modules["\\gcd"].num_cells_by_type.ICGX0P5H7L == 2' %flows/gcd_icg/default/Synthesis_yosys/feature/Synthesis_stat.json
 ; RUN: %jq -e 'any(.paths[]; any(.stages[]; .cell == "ICGX0P5H7L"))' %flows/gcd_icg/default/Synthesis_yosys/feature/post_synthesis/timing_paths.json
