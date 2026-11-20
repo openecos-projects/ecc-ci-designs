@@ -18,5 +18,5 @@ core_util = 0.45
 [params.cts]
 max_fanout = 6
 
-[params.place]
+[params.step.placement.place]
 target_density = 0.50

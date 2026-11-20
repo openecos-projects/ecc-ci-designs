@@ -1,2 +1,3 @@
 ; REQUIRES: flow-gcd_icg
 ; RUN: test -s %flows/gcd_icg/signoff.tar.gz
+; RUN: test "$(zgrep -Ec '^[[:space:]]*CKGTX0P5_9TSVT[[:space:]]' %flows/gcd_icg/default/*_synthesis_yosys/output/gcd_icg_synthesis.v.gz)" = 2

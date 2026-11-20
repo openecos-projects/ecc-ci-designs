@@ -1,2 +1,3 @@
 # Preserve the supplied DEF byte-for-byte; its formatter uses trailing spaces.
 inputs/gcd_icg.def whitespace=-trailing-space
+v2/gcd.def whitespace=-trailing-space
