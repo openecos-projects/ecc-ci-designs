@@ -15,3 +15,6 @@ root = ""
 
 [flow]
 preset = "rtl2gds"
+
+[params.floorplan]
+core_util = 0.35
