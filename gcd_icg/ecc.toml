@@ -1,11 +1,11 @@
 [design]
 name = "gcd_icg"
 top = "gcd"
-rtl = ["src/gcd_icg.v", "src/physical_only_cells.v"]
-netlist = "src/gcd_icg.v"
-def = "inputs/gcd_icg.def"
-sdc = "constraints/timing_inputs.tcl"
-spef = "inputs/gcd_icg.spef"
+rtl = ["v2/gcd_synthesis.v"]
+netlist = "v2/gcd.v"
+def = "v2/gcd.def"
+sdc = "v2/timing_inputs.tcl"
+spef = "v2/gcd.spef"
 clock_port = "clk"
 frequency_mhz = 100.0
 
@@ -15,3 +15,6 @@ root = ""
 
 [flow]
 preset = "rtl2gds"
+
+[params.floorplan]
+core_util = 0.35

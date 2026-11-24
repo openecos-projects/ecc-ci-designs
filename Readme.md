@@ -15,10 +15,7 @@ SystemVerilog sources under `src/`; the multi-file cores list them through
 `src/filelist.f`, while the single-file `Fstage-scpu` core names its source
 directly in `ecc.toml`.
 
-`gcd_icg` is intentionally a gate-level `syn_sta` fixture. It keeps its
-original DEF/SPEF timing inputs and checks that its integrated clock-gate
-cells survive synthesis input handling; unlike the RTL-to-GDS fixtures, it
-does not claim physical-signoff quality gates.
+`gcd_icg` runs the ICS55 v2 gate-level GCD through `rtl2gds`. Its regression checks both integrated clock gates after synthesis and the final signoff export.
 
 Run a design with:
 

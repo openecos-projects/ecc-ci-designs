@@ -13,7 +13,10 @@ root = ""
 preset = "rtl2gds"
 
 [params.floorplan]
-core_util = 0.35
+core_util = 0.32
 
 [params.cts]
 max_fanout = 6
+
+[params.timing_opt]
+hold_margin = 0.06

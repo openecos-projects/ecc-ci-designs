@@ -1,26 +1,7 @@
 # gcd_icg
 
-Gate-level GCD regression containing two `ICGX0P5H7L` integrated clock-gate
-instances.  The CI fixture runs the `rtl2gds` preset and asserts that both
-clock gates survive ECC's synthesis input handling and appear on the final
-STA's propagated clock paths. The pre-CTS clocks are ideal, so the worst
-post-synthesis data paths are not required to contain a clock-gate cell.
+This ICS55 v2 regression runs the `rtl2gds` preset on a mapped GCD netlist. Its two `CKGTX0P5_9TSVT` instances gate the A and B register banks. The lit test checks the number of gates in the new synthesis output, that both instances sit on the final STA's propagated clock paths, and the exported signoff archive. Pre-CTS clocks are ideal, so the worst post-synthesis data paths are not required to contain a clock-gate cell.
 
-`inputs/gcd_icg.def`, `inputs/gcd_icg.spef`, and
-`constraints/gcd_icg.sdc` are the original post-route timing inputs.
-`ecc.toml` selects `constraints/timing_inputs.tcl`, which expresses the same
-clock and IO commands in ECC's five-group input format. Despite its suffix,
-this input contains TOML strings, not an executable Tcl script. ECC adds its
-standard timing rules and generates the native pre/post-CTS scenario scripts.
-The original SDC remains unchanged for reference and other timing tools.
+The inputs under `v2/` come from one 100 MHz run of ECC's `test/fixtures/gcd/gcd.v` against public PDK commit `b021e8329b29a8407550563ed769f7f7a15a8683`. `gcd_synthesis.v` is the synthesis-stage netlist with source paths shortened. `gcd.v`, `gcd.def` and `gcd.spef` are from RC extraction of the same routed layout, using the TYPICAL 25 °C SPEF. `gcd.sdc` is the workspace's typical pre-CTS constraint file with ideal clocks for placement, kept for reference only: it is ECC output, not an ECC input.
 
-The supplied DEF and SPEF can also be used for a direct ECC STA run:
-
-```bash
-ecc run --project gcd_icg --workspace sta-only --from STA --to STA
-```
-
-`FILLTAPH7R` is a physical-only fill cell present in the supplied netlist but
-not in the ICS55 timing Liberty set.  `src/physical_only_cells.v` declares it
-as a Yosys black box so the mapped netlist can be read without changing its
-logic or its clock-gate cells.
+`ecc.toml` selects `v2/timing_inputs.tcl`, which carries the clock and IO commands of `constraints/gcd_icg.sdc` on the v2 port names — the mapped v2 netlist drops the trailing underscore from every data port. Despite its suffix the file holds TOML strings, not an executable Tcl script; ECC adds its standard timing rules and generates the native pre- and post-CTS scenario scripts. The original v1 inputs are in `src/`, `inputs/` and `constraints/`, where `constraints/timing_inputs.tcl` is the five-group form of `constraints/gcd_icg.sdc`.
