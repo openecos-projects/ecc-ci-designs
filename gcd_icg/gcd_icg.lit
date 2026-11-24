@@ -1,3 +1,11 @@
 ; REQUIRES: flow-gcd_icg
 ; RUN: test -s %flows/gcd_icg/signoff.tar.gz
 ; RUN: test "$(zgrep -Ec '^[[:space:]]*CKGTX0P5_9TSVT[[:space:]]' %flows/gcd_icg/default/*_synthesis_yosys/output/gcd_icg_synthesis.v.gz)" = 2
+; Step directories carry flow-position prefixes; use the recorded directory.
+; RUN: synthesis_dir=$(%jq -er '[.steps[] | select(.name == "synthesis")] | last | .directory' %flows/gcd_icg/default/home/flow.json)
+; RUN: sta_dir=$(%jq -er '[.steps[] | select(.name == "sta")] | last | .directory' %flows/gcd_icg/default/home/flow.json)
+; RUN: %jq -e '.modules["\\gcd"].num_cells_by_type.CKGTX0P5_9TSVT == 2' "%flows/gcd_icg/default/$synthesis_dir/feature/synthesis_stat.json"
+; RUN: %jq -e 'any(.paths[]; .launch_clock == "clk" or .capture_clock == "clk")' "%flows/gcd_icg/default/$synthesis_dir/feature/post_synthesis/timing_paths.json"
+; Pre-CTS clocks are ideal; the top-20 data paths need not include an ICG.
+; Check both ICG instances on the propagated clock paths after CTS and routing.
+; RUN: %jq -e '([.paths[] | (.launch_clock_path[]?, .capture_clock_path[]?) | select(.cell == "CKGTX0P5_9TSVT") | .instance] | unique | length) == 2' "%flows/gcd_icg/default/$sta_dir/feature/TYP_25/TYPICAL/timing_paths.json"
